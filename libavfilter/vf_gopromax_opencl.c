@@ -303,7 +303,6 @@ static const AVFilterPad gopromax_opencl_inputs[] = {
         .type         = AVMEDIA_TYPE_VIDEO,
         .config_props = &ff_opencl_filter_config_input,
     },
-    { NULL }
 };
 
 static const AVFilterPad gopromax_opencl_outputs[] = {
@@ -312,7 +311,6 @@ static const AVFilterPad gopromax_opencl_outputs[] = {
         .type          = AVMEDIA_TYPE_VIDEO,
         .config_props  = &gopromax_opencl_config_output,
     },
-    { NULL }
 };
 
 const AVFilter ff_vf_gopromax_opencl = {
@@ -324,7 +322,7 @@ const AVFilter ff_vf_gopromax_opencl = {
     .uninit          = &gopromax_opencl_uninit,
     .query_formats   = &ff_opencl_filter_query_formats,
     .activate        = &gopromax_opencl_activate,
-    .inputs          = gopromax_opencl_inputs,
-    .outputs         = gopromax_opencl_outputs,
+    FILTER_INPUTS(gopromax_opencl_inputs),
+    FILTER_OUTPUTS(gopromax_opencl_outputs),
     .flags_internal  = FF_FILTER_FLAG_HWFRAME_AWARE,
 };
